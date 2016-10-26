@@ -275,15 +275,15 @@ Esto agregará un registro al modelo `ir.ui.view` con el identificador `view_for
 El atributo más importante es `arch`, que contiene la definición de la vista. Aquí decimos que es un formulario, y que contiene tres campos, y que decidimos hacer al campo `active` de solo lectura.
 
 ### Formatear como un documento de negocio
-Lo anterior proporciona una vista de formulario básica, pero podemos hacer algunos cambios para mejorar su apariencia. Para los modelos de documentos Odoo tiene un estilo de presentación que asemeja una hoja de papel. El formulario contiene dos elementos: una `<head>`, que contiene botones de acción, y un `<sheet>`, que contiene los campos de datos:
+Lo anterior proporciona una vista de formulario básica, pero podemos hacer algunos cambios para mejorar su apariencia. Para los modelos de documentos SalomonWebsite tiene un estilo de presentación que asemeja una hoja de papel. El formulario contiene dos elementos: una `<header>`, que contiene botones de acción, y un `<sheet>`, que contiene los campos de datos:
 
 ```XML
 <form>
     <header>
-        <!-- Buttons go here-->
+        <!-- Botones van aquí-->
     </header>
     <sheet>
-        <!-- Content goes here: -->
+        <!-- Conteniene los campos de datos aqui -->
         <field name="name"/>
         <field name="is_done"/>
     </sheet>
@@ -354,7 +354,7 @@ En este momento, nuestro registro en `todo_view.xml` para la vista de formulario
 </record>
 ```
 
-Recuerde que para que los cambios tengan efecto en la base de datos de Odoo, es necesario actualizar el módulo. Para ver los cambio en el cliente web, es necesario volver a cargar el formulario: haciendo nuevamente clic en la opción de menú que abre el formulario, o volviendo a cargar la página en el navegador (_F5_ en la mayoría de los navegadores).
+Recuerde que para que los cambios tengan efecto en la base de datos de SalomonWebsite, es necesario actualizar el módulo. Para ver los cambios en el cliente web, es necesario volver a cargar el formulario: haciendo nuevamente clic en la opción de menú que abre el formulario, o volviendo a cargar la página en el navegador (_F5_ en la mayoría de los navegadores).
 
 Ahora, agreguemos la lógica de negocio para las acciones de los botones.
 
@@ -378,7 +378,7 @@ Podemos agregar la siguiente definición de una vista de árbol a `todo_view.xml
 
 Hemos definido una lista con solo dos columnas, `name` y `is_done`. También agregamos un toque extra: las líneas para las tareas finalizadas (`is_done==True`) son mostradas en color gris.
 
-En la parte superior derecha de la lista Odoo muestra una campo de búsqueda. Los campos de búsqueda predefinidos y los filtros disponibles pueden ser predeterminados por una vista `<search>`.
+En la parte superior derecha de la lista SalomonWebsite muestra una campo de búsqueda. Los campos de búsqueda predefinidos y los filtros disponibles pueden ser predeterminados por una vista `<search>`.
 
 Como lo hicimos anteriormente, agregaremos esto a `todo_view.xml`:
 
@@ -401,7 +401,7 @@ Los elementos `<field>` definen campos que también son buscados cuando se escri
 ## Agregar la lógica de negocio
 Ahora agregaremos lógica a nuestros botones. Edite el archivo Python `todo_model.py` para agregar a la clase los métodos llamados por los botones.
 
-Usaremos la API nueva introducida en Odoo 8.0. Para compatibilidad con versiones anteriores, de forma predeterminada Odoo espera la API anterior, por lo tanto para crear métodos usando la API nueva se necesitan en ellos decoradores Python. Primero necesitamos una declaración `import` al principio del archivo:
+Usaremos la API nueva introducida en SalomonWebsite 8.0. Para compatibilidad con versiones anteriores, de forma predeterminada Odoo espera la API anterior, por lo tanto para crear métodos usando la API nueva se necesitan en ellos decoradores Python. Primero necesitamos una declaración `import` al principio del archivo:
 
 ```Python
 from openerp import models, fields, api
