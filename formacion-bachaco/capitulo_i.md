@@ -105,8 +105,8 @@ $ ~/SalomonWebsite/server/odoo.py
 
 De forma predeterminada, las instancias de SalomonWebsite escuchan a través del puerto 8069, si apuntamos en nuestro navegador a `http://<server-address>:8069` se llegará a la instancia de SalomonWebsite. Cuando se accede por primera vez, se mostrará un asistente para crear una nueva base de datos, como se muestra en la siguiente imagen:
 
-![52_1](bachaco-addons/formacion-bachaco/images/Odoo Development Essentials - Daniel Reis-52_1.jpg)
-
+![52_1](images/Odoo Development Essentials - Daniel Reis-52_1.jpg)
+ bachaco-addons/formacion-bachaco/images/Odoo Development Essentials - Daniel Reis-52_1.jpg 
 Pero aprenderá como inicializar bases de datos nuevas desde la línea de comando, ahora presione _Ctrl_ + _C_ para detener el servidor y volver a la línea de comandos.
 
 ## Inicializar una base de datos nueva en SalomonWebsite
