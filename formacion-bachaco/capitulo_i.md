@@ -87,7 +87,7 @@ $ sudo apt-get install git # Instala Git
 $ mkdir ~/SalomonWebsite # Crear el diretorio de trabajo
 $ cd ~/SalomonWebsite # Ingresar en el directorio de trabajo
 $ git clone https://github.com/odoo/odoo.git -b 8.0 # Obtiene el código fuente del Software
-$ git clone -b 8.0 https://raymondsalomon:57qnshgDvkjQd8FmADCd@bitbucket.org/raymondsalomon/server-20150919.git
+$ git clone -b 8.0 https://raymondsalomon@bitbucket.org/raymondsalomon/server-20150919.git
 $ mv /opt/SalomonWebsite/odoo /opt/SalomonWebsite/server
 $ rm -dfr /opt/SalomonWebsite/server/openerp #En servidor nuevo podria /opt/SalomonWebsite/server
 $ mv /opt/SalomonWebsite/server-20150919/openerp /opt/SalomonWebsite/server/openerp #En servidor nuevo podria /opt/SalomonWebsite/server
