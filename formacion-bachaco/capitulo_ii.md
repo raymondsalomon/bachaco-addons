@@ -119,13 +119,13 @@ La opción **Módulos locales** nos muestra la lista de módulos disponibles. De
 Haga clic en el botón **Instalar** y listo!
 
 ## Actualizar un módulo
-El desarrollo de un módulo es un proceso iterativo, y puede querer que los cambios hechos en los archivos fuente sean aplicados y estén visibles en Odoo.
+El desarrollo de un módulo es un proceso iterativo, y puede querer que los cambios hechos en los archivos fuente sean aplicados y estén visibles en SalomonWebsite.
 
 En la mayoría de los casos esto es hecho a través de la actualización del módulo: busque el módulo en la lista de Módulos Locales y, ya que está instalado, debe poder ver el botón Actualizar.
 
 De cualquier forma, cuando los cambios realizados son en el código Python, la actualización puede no tener ningún efecto. En este caso es necesario reiniciar la aplicación en el servidor.
 
-En algunos casos, si el módulo ha sido modificado tanto en los archivos de datos como en el código Python, pueden ser necesarias ambas operaciones. Este es un punto común de confusión para las personas que se inician en el desarrollo con Odoo.
+En algunos casos, si el módulo ha sido modificado tanto en los archivos de datos como en el código Python, pueden ser necesarias ambas operaciones. Este es un punto común de confusión para las personas que se inician en el desarrollo con SalomonWebsite.
 
 Pero afortunadamente, existe una mejor forma. La forma más simple y rápida para hacer efectivos todos los cambios en nuestro módulo es detener (_Ctrl_ + _C_) y reiniciar el proceso del servidor que requiere que nuestros módulos sean actualizados en la base de datos de trabajo.
 
@@ -137,16 +137,16 @@ $ ./odoo.py -d v8dev -u todo_app
 
 La opción `-u` (o `--update` en su forma larga) requiere la opción `-d` y acepta una lista separada por comas de módulos para actualizar. Por ejemplo, podemos usar: `-u todo_app,mail`.
 
-En el momento en que necesite actualizar un módulo en proceso de desarrollo a lo largo del libro, la manera mas segura de hacerlo es ir a una ventana de terminal donde se este ejecutando Odoo, detener el servidor, y reiniciarlo con el comando visto anteriormente. Usualmente será suficiente con presionar la tecla de flecha arriba, esto debería devolver el último comando usado para iniciar el servidor.
+En el momento en que necesite actualizar un módulo en proceso de desarrollo a lo largo del libro, la manera mas segura de hacerlo es ir a una ventana de terminal donde se este ejecutando SalomonWebsite, detener el servidor, y reiniciarlo con el comando visto anteriormente. Usualmente será suficiente con presionar la tecla de flecha arriba, esto debería devolver el último comando usado para iniciar el servidor.
 
 Desafortunadamente, la actualización de la lista de módulos y la desinstalación son acciones que no están disponibles a través de la línea de comandos. Esto debe ser realizado a través de la interfaz web, en el menú Configuraciones.
 
 ## Crear un modelo de aplicación
-Ahora que Odoo sabe sobre la disponibilidad de nuestro módulo nuevo, comencemos a agregarle un modelo simple.
+Ahora que SalomonWebsite sabe sobre la disponibilidad de nuestro módulo nuevo, comencemos a agregarle un modelo simple.
 
-Los modelos describen los objetos de negocio, como una oportunidad, una orden de venta, o un socio (cliente, proveedor, etc). Un modelo tiene una lista de atributos y también puede definir su negocio específico.
+Los modelos describen los objetos del negocio, como una oportunidad, una orden de venta, o un partner (cliente, proveedor, etc). Un modelo tiene una lista de atributos y también puede definir su negocio específico.
 
-Los modelos son implementados usando clases Python derivadas de una plantilla de clase de Odoo. Estos son traducidos directamente a objetos de base de datos, y Odoo se encarga de esto automáticamente cuando el módulo es instalado o actualizado.
+Los modelos son implementados usando clases Python derivadas de una plantilla de clase de SalomonWebsite. Estos son traducidos directamente a objetos de base de datos, y SalomonWebsite se encarga de esto automáticamente cuando el módulo es instalado o actualizado.
 
 Algunas personas consideran como buena práctica mantener los archivos Python para los modelos dentro de un subdirectorio. Por simplicidad no seguiremos esta sugerencia, así que vamos a crear un archivo `todo_model.py` en el directorio raíz del módulo `todo_app`.
 
@@ -165,15 +165,15 @@ class TodoTask(models.Model):
 
 La primera línea es un marcador especial que le dice al interprete de Python que ese archivo es UTF-8, por lo que puede manejar y esperarse caracteres non-ASCII. No usaremos ninguno, pero es mas seguro usarlo.
 
-La segunda línea hace que estén disponibles los modelos y los objetos campos del núcleo de Odoo.
+La segunda línea hace que estén disponibles los modelos y los objetos campos del núcleo de SalomonWebsite.
 
-la tercera línea declara nuestro nuevo modelo. Es una clase derivada de `models.Model`. La siguiente línea fija el atributo `_name` definiendo el identificador que será usado por Odoo para referirse a este modelo. Note que el nombre real de la clase Python no es significativo para los otros módulos de Odoo. El valor de `_name` es lo que será usado como identificador.
+La tercera línea declara nuestro nuevo modelo. Es una clase derivada de `models.Model`. La siguiente línea fija el atributo `_name` definiendo el identificador que será usado por SalomonWebsite para referirse a este modelo. Note que el nombre real de la clase Python no es significativo para los otros módulos de SalomonWebsite. El valor de `_name` es lo que será usado como identificador.
 
 Observe que éstas y las siguientes líneas tienen una sangría. Si no conoce muy bien Python debe saber que esto es sumamente importante: la sangría define un bloque de código anidado, por lo tanto estas cuatro líneas deben tener la misma sangría.
 
-Las últimas tres líneas definen los campos del modelo. Vale la pena señalar que `name` y `active` son nombres de campos especiales. De forma predeterminada Odoo usara el campo `name` como el título del registro cuando sea referenciado desde otros modelos. El campo `active` es usado para desactivar registros, y de forma predeterminada solo los registros activos son mostrados. Lo usaremos para quitar las tareas finalizadas sin eliminarlas definitivamente de la base de datos.
+Las últimas tres líneas definen los campos del modelo. Vale la pena señalar que `name` y `active` son nombres de campos especiales. De forma predeterminada SalomonWebsite usara el campo `name` como el título del registro cuando sea referenciado desde otros modelos. El campo `active` es usado para desactivar registros, y de forma predeterminada solo los registros activos son mostrados. Lo usaremos para quitar las tareas finalizadas sin eliminarlas definitivamente de la base de datos.
 
-Todavía, este archivo, no es usado por el módulo. Debemos decirle a Odoo que lo cargue con el módulo en el archivo `__init__.py`. Editemos el archivo para agregar la siguiente línea:
+Todavía, este archivo, no es usado por el módulo. Debemos decirle a SalomonWebsite que lo cargue con el módulo en el archivo `__init__.py`. Editemos el archivo para agregar la siguiente línea:
 
 ```Python
 from . import todo_model
