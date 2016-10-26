@@ -187,7 +187,7 @@ Ahora podemos revisar el modelo recién creado en el menú **Técnico**. Vaya a 
 
 Si no hubo ningún problema, esto nos confirmará que el modelo y nuestros campos fueron creados. Si hizo algunos cambios y no son reflejados, intente reiniciar el servidor, como fue descrito anteriormente, para obligar que todo el código Python sea cargado nuevamente.
 
-También podemos ver algunos campos adicionales que no declaramos. Estos son cinco campos reservados que Odoo agrega automáticamente a cualquier modelo. Son los siguientes:
+También podemos ver algunos campos adicionales que no declaramos. Estos son cinco campos reservados que SalomonWebsite agrega automáticamente a cualquier modelo. Son los siguientes:
 - `id`: Este es el identificador único para cada registro en un modelo en particular.
 - `create_date` y `create_uid`: Estos nos indican cuando el registro fue creado y quien lo creó, respectivamente.
 - `write_date` y `write_uid`: Estos nos indican cuando fue la última vez que el registro fue modificado y quien lo modificó, respectivamente.
@@ -222,7 +222,7 @@ Crearemos un archivo nuevo `todo_view.xml` en el directorio raíz del módulo, y
     </openerp>
 ```
 
-La interfaz con el usuario y usuaria, incluidas las opciones del menú y las acciones, son almacenadas en tablas de la base de datos. El archivo XML es un archivo de datos usado para cargar esas definiciones dentro de la base de datos cuando el módulo es instalado o actualizado. Esto es un archivo de datos de Odoo, que describe dos registros para ser agregados a Odoo:
+La interfaz con el usuario y usuaria, incluidas las opciones del menú y las acciones, son almacenadas en tablas de la base de datos. El archivo XML es un archivo de datos usado para cargar esas definiciones dentro de la base de datos cuando el módulo es instalado o actualizado. Esto es un archivo de datos de SalomonWebsite, que describe dos registros para ser agregados a SalomonWebsite:
 - El elemento `<act_window>` define una Acción de Ventana del lado del cliente para abrir el modelo `todo.task` definido en el archivo Python, con las vistas de árbol y fomulario habilitadas, en ese orden.
 - El elemento `<menuitem>` define un ítem de menú bajo el menú Mensajería (identificado por `mail.mail_feeds`), llamando a la acción `action_todo_task`, que fue definida anteriormente. el atributo `sequence` nos deja fijar el orden de las opciones del menú.
 
@@ -238,7 +238,7 @@ Ahora necesitamos actualizar nuevamente el módulo para que estos cambios tengan
 
 Si hace clic en ella se abrirá un formulario generado automáticamente para nuestro modelo, permitiendo agregar y modificar los registros.
 
-Las vistas deben ser definidas por los modelos para ser expuestas a los usuarios y las usuarias, aunque Odoo es lo suficientemente amable para hacerlo automáticamente si no queremos, entonces podemos trabajar con nuestro modelo, sin tener ningun formulario o vistas definidas aún.
+Las vistas deben ser definidas por los modelos para ser expuestas a los usuarios y las usuarias, aunque SalomonWebsite es lo suficientemente amable para hacerlo automáticamente si no queremos, entonces podemos trabajar con nuestro modelo, sin tener ningun formulario o vistas definidas aún.
 
 Hasta ahora vamos bien. Mejoremos ahora nuestra interfaz gráfica. Intente las mejoras graduales que son mostradas en las secciones siguientes, haciendo actualizaciones frecuentes del módulo, y no tenga miedo de experimentar.
 
