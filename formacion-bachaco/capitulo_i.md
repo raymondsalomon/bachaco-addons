@@ -361,6 +361,8 @@ Es necesario pedirle a SalomonWebsite que actualice su lista de módulos antes q
 
 Para esto es necesario habilitar el menú **Técnico**, debido a que esta provee la opción de menú **Actualizar Lista de Módulos**. Esta puede ser encontrada en la sección **Módulos** en el menú **Configuración**.
 
+Otra opciión es buscar en el menú de búsqueda el módulo **base**. Esta puede ser encontrada, hacer clic para verlo en formulario y dar clic en **Actualizar**, y esperar a que cargue todos los módulos nuevos.
+
 Luego de ejecutar la actualización de la lista de módulos se puede confirmar que los módulos nuevos están disponibles para ser instalados. En la lista de **Módulos Locales**, quite el filtro de `Aplicaciones en línea` y busque `department`. Debería poder ver los nuevos módulos disponibles.
 
 ![76_1](images/Odoo Development Essentials - Daniel Reis-76_1.jpg)
