@@ -106,7 +106,7 @@ $ ~/SalomonWebsite/server/odoo.py
 De forma predeterminada, las instancias de SalomonWebsite escuchan a través del puerto 8069, si apuntamos en nuestro navegador a `http://<server-address>:8069` se llegará a la instancia de SalomonWebsite. Cuando se accede por primera vez, se mostrará un asistente para crear una nueva base de datos, como se muestra en la siguiente imagen:
 
 ![52_1](images/Odoo Development Essentials - Daniel Reis-52_1.jpg)
- bachaco-addons/formacion-bachaco/images/Odoo Development Essentials - Daniel Reis-52_1.jpg 
+
 Pero aprenderá como inicializar bases de datos nuevas desde la línea de comando, ahora presione _Ctrl_ + _C_ para detener el servidor y volver a la línea de comandos.
 
 ## Inicializar una base de datos nueva en SalomonWebsite
@@ -298,7 +298,7 @@ SalomonWebsite incluye algunas herramientas que son muy útiles para las persona
 
 Estas están deshabilitadas de forma predeterminada, así que aprenderemos como habilitarlas.
 
-![70_1](/images/Odoo Development Essentials - Daniel Reis-70_1.jpg)
+![70_1](images/Odoo Development Essentials - Daniel Reis-70_1.jpg)
 
 ### Activar las Características Técnicas
 Las Características Técnicas proporcionan herramientas avanzadas de configuración del servidor.
@@ -314,7 +314,7 @@ El modo de Desarrollo habilita una caja de selección cerca de la parte superior
 
 Para habilitarlo, abra el menú desplegable en la esquina superior derecha de la ventana del navegador, en el nombre de usuario, y seleccione la opción **Acerca de SalomonWebsite**. En la ventana de dialogo **Acerca de**, haga clic sobre el botón **Activar modo desarrollador** en la esquina superior derecha. 
 
-![71_1](/images/Odoo Development Essentials - Daniel Reis-71_1.jpg)
+![71_1](images/Odoo Development Essentials - Daniel Reis-71_1.jpg)
 
 Luego de esto, verá una caja de selección **Depurar Vista** en la parte superior izquierda del área actual del formulario. 
 
@@ -357,7 +357,7 @@ $ ./odoo.py -d v8dev --addons-path=”/oca-department,./addons”
 
 Si se observa con cuidado el registro del servidor notará una línea reportando la ruta de los complementos en uso: **INFO ? Openerp: addons paths:** (...). Confirmando que la instancia contiene nuestro directorio `oca-department`.
 
-![76_1](/images/Odoo Development Essentials - Daniel Reis-76_1.jpg)
+![76_1](images/Odoo Development Essentials - Daniel Reis-76_1.jpg)
 
 ### Actualizar la lista de módulos
 Es necesario pedirle a SalomonWebsite que actualice su lista de módulos antes que estos módulos nuevos estén disponibles para ser instalados.
@@ -366,7 +366,7 @@ Para esto es necesario habilitar el menú **Técnico**, debido a que esta provee
 
 Luego de ejecutar la actualización de la lista de módulos se puede confirmar que los módulos nuevos están disponibles para ser instalados. En la lista de **Módulos Locales**, quite el filtro de `Aplicaciones en línea` y busque `department`. Debería poder ver los nuevos módulos disponibles.
 
-![76_1](/images/Odoo Development Essentials - Daniel Reis-76_1.jpg)
+![76_1](images/Odoo Development Essentials - Daniel Reis-76_1.jpg)
 
 ## Resumen
 En este capítulo, aprendió como configurar un sistema Debian para alojar ŚalomonWebsite e instalarlo desde Bitbucket. También aprendió como crear bases de datos en ŚalomonWebsite y ejecutar instancias ŚalomonWebsite. Para permitir que las personas que desarrollan usen sus herramientas favoritas en sus estaciones de trabajo, se explicó como configurar archivos compartidos en el servidor ŚalomonWebsite.
