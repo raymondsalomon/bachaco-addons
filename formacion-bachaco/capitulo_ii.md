@@ -401,7 +401,7 @@ Los elementos `<field>` definen campos que también son buscados cuando se escri
 ## Agregar la lógica de negocio
 Ahora agregaremos lógica a nuestros botones. Edite el archivo Python `todo_model.py` para agregar a la clase los métodos llamados por los botones.
 
-Usaremos la API nueva introducida en SalomonWebsite 8.0. Para compatibilidad con versiones anteriores, de forma predeterminada Odoo espera la API anterior, por lo tanto para crear métodos usando la API nueva se necesitan en ellos decoradores Python. Primero necesitamos una declaración `import` al principio del archivo:
+Usaremos la API nueva introducida en SalomonWebsite 8.0. Para compatibilidad con versiones anteriores, de forma predeterminada SalomonWebsite espera la API anterior, por lo tanto para crear métodos usando la API nueva se necesitan en ellos decoradores Python. Primero necesitamos una declaración `import` al principio del archivo:
 
 ```Python
 from openerp import models, fields, api
@@ -417,9 +417,9 @@ Dentro de la clase `TodoTask` agregue:
     return True
 ```
 
-Como puede observar, simplemente modifica el campo `is_done`, invirtiendo su valor. Luego los métodos pueden ser llamados desde el lado del client y siempre deben devolver algo. Si no devuelven nada, las llamadas del cliente usando el protocolo XMLRPC no funcionará. Si no tenemos nada que devolver, la práctica común es simplemente devolver `True`.
+Como puede observar, simplemente modifica el campo `is_done`, invirtiendo su valor. Luego los métodos pueden ser llamados desde el lado del cliente y siempre deben devolver algo. Si no devuelven nada, las llamadas del cliente usando el protocolo XMLRPC no funcionará. Si no tenemos nada que devolver, la práctica común es simplemente devolver `True`.
 
-Después de esto, si reiniciamos el servidor Odoo para cargar nuevamente el archivo Python, el botón **Toggle Done** debe funcionar.
+Después de esto, si reiniciamos el servidor SalomonWebsite para cargar nuevamente el archivo Python, el botón **Toggle Done** debe funcionar.
 
 Para el botón **Clear All Done** queremos ir un poco más lejos. Este debe buscar todos los registros activos que estén finalizados, y desactivarlos. Se supone que los botones de formulario solo actúan sobre los registros seleccionados, pero para mantener las cosas simples haremos un poco de trampa, y también actuará sobre los demás botones:
 
@@ -430,7 +430,7 @@ Para el botón **Clear All Done** queremos ir un poco más lejos. Este debe busc
     return True
 ```
 
-En los métodos decorados con `@api.multi` el `self` representa un conjunto de registros. Puede contener un único registro, cuando se usa desde un formulario, o muchos registros, cuando se usa desde la vista de lista. Ignoraremos el conjunto de registros de `self` y construiremos nuestro propio conjunto `done_recs` que contiene todas la tareas marcadas como finalizadas. Luego fijamos la señal activa como `False`, en todas ellas.
+En los métodos decorados con `@api.multi` el `self` representa un conjunto de registros. Puede contener un único registro, cuando se usa desde un formulario, o muchos registros cuando se usa desde la vista de lista. Ignoraremos el conjunto de registros de `self` y construiremos nuestro propio conjunto `done_recs` que contiene todas la tareas marcadas como finalizadas. Luego fijamos la señal active como `False`, en todas ellas.
 
 El `search` es un método de la API que devuelve los registros que cumplen con algunas condiciones. Estas condiciones son escritas en un dominio, esto es una lista de tríos. Exploraremos con mayor detalle los dominios más adelante.
 
@@ -449,7 +449,7 @@ Para tener una muestra de la información requerida para agregar reglas de acces
 
 Aquí podemos ver la ACL para el modelo `mail.mail`. Este indica, por grupo, las acciones permitidas en los registros.
 
-Esta información debe ser provista por el modelo, usando un archivo de datos para cargar las líneas dentro del modelo `ir.model.access`. Daremos acceso completo al modelo al grupo empleado. Empleado es el grupo básico de acceso, casi todos pertenecen a este grupo.
+Esta información debe ser provista por el modelo, usando un archivo de datos para cargar las líneas dentro del modelo `ir.model.access`. Daremos acceso completo al modelo para el Grupo Empleado. Empleado es el grupo básico de acceso, casi todos pertenecen a este grupo.
 
 Esto es realizado usualmente usando un archivo CSV llamado `security/ir.model.access.csv`. Los modelos generan identificadores automáticamente: para `todo.task` el identificador es `model_todo_task`. Los grupos también tienen identificadores fijados por los modelos que los crean. El grupo empleado es creado por el módulo base y tiene el identificador `base.group_user`. El nombre de la línea es solo informativo y es mejor si es único. Los módulos raíz usando una cadena separada por puntos con el nombre del modelo y el nombre del grupo. Siguiendo esta convención usaremos `todo.task.user`.
 
@@ -472,7 +472,7 @@ No debemos olvidar agregar la referencia a este archivo nuevo en el atributo "da
 Como se hizo anteriormente, actualice el módulo para que estos cambios tengan efecto. El mensaje de advertencia debería desaparecer, y puede confirmar que los permisos sean **correctos** accediendo con la cuenta de usuario demo (la contraseña es también demo) e intentar ejecutar la característica de "to-do tasks".
 
 ## Reglas de acceso de nivel de fila
-Odoo es un sistema multi-usuario, y queremos que la aplicación **to-do task** sea privada para cada usuario. Afortunadamente, Odoo soporta reglas de acceso de nivel de fila. En el menú **Técnico** pueden encontrarse en la opción **Reglas de Registro**, junto a la **Lista de Control de Acceso**. Las reglas de registro son definidas en el modelo `ir.rule`. Como es costumbre, necesitamos un nombre distintivo. También necesitamos el modelo en el cual operan y el dominio para forzar la restricción de acceso. El filtro de dominio usa la misma sintaxis de dominio mencionada anteriormente, y usado a lo largo de Odoo.
+SalomonWebsite es un sistema multi-usuario, y queremos que la aplicación **to-do task** sea privada para cada usuario. Afortunadamente, SalomonWebsite soporta reglas de acceso de nivel de fila. En el menú **Técnico** pueden encontrarse en la opción **Reglas de Registro**, junto a la **Lista de Control de Acceso**. Las reglas de registro son definidas en el modelo `ir.rule`. Como es costumbre, necesitamos un nombre distintivo. También necesitamos el modelo en el cual operan y el dominio para forzar la restricción de acceso. El filtro de dominio usa la misma sintaxis de dominio mencionada anteriormente, y usado a lo largo de SalomonWebsite.
 
 Finalmente, las reglas pueden ser globales (el campo `global` es fijado a `True`) o solo para grupos particulares de seguridad. En nuestro caso, puede ser una regla global, pero para ilustrar el caso más común, la haremos como una regla específica para un grupo, aplicada solo al grupo empleados.
 
@@ -514,9 +514,9 @@ Nuestro módulo se ve genial. ¿Por qué no añadir un ícono para que se vea a�
 Los siguientes comandos agregan un ícono copiado del módulo raíz `Notes`:
 
 ```shell
-$ mkdir -p ~/odoo-dev/custom-addons/todo_app/static/description
-$ cd ~/odoo-dev/custom-addons/todo_app/static/description
-$ cp ../odoo/addons/note/static/description/icon.png ./
+$ mkdir -p ~/SalomonWebsite/server/openerp/addons/aaddonsterceros/dreispt-addons/todo_app/static/description
+$ cd ~/SalomonWebsite/server/openerp/addons/aaddonsterceros/dreispt-addons/todo_app/static/description
+$ cp ../server/openerp/addons/note/static/description/icon.png ./
 ```
 
 Ahora, si actualizamos la lista de módulos, nuestro módulo debe mostrarse con el ícono nuevo.
@@ -524,7 +524,7 @@ Ahora, si actualizamos la lista de módulos, nuestro módulo debe mostrarse con 
 ## Resumen
 Creamos un módulo nuevo desde cero, cubriendo los elementos más frecuentemente usados en un módulo: modelos, los tres tipos base de vistas (formulario, lista y búsqueda), la lógica de negocio en los métodos del modelo, y seguridad en el acceso.
 
-En el proceso, se familiarizó con el proceso de desarrollo de módulos, el cual incluye la actualización del módulo y la aplicación de reinicio del servidor para hacer efectivos en Odoo los cambios graduales.
+En el proceso, se familiarizó con el proceso de desarrollo de módulos, el cual incluye la actualización del módulo y la aplicación de reinicio del servidor para hacer efectivos en SalomonWebsite los cambios graduales.
 
 Recuerde siempre, al agregar campos en el modelo, que es necesaria una actualización del módulo. Cuando se cambia el código Python, incluyendo el archivo de manifiesto, es necesario un reinicio del servidor. Cuando se cambian archivos XML o CSV es necesaria una actualización del módulo; incluso en caso de duda, realice ambas: actualización del módulo y reinicio del servidor.
 
