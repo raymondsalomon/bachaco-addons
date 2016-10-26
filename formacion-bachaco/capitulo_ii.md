@@ -104,7 +104,7 @@ Mira detenidamente en el registro del servidor. Debería haber una línea **INFO
 Recuerde incluir cualquier otro directorio que pueda estar usando. Por ejemplo, si siguió las instrucciones del último capítulo para instalar el repositorio department, puede querer incluirlo y usar la opción:
 
 ```shell
---addons-path="raymond-propios,department,server/openerp/addons"
+--addons-path="raymond-propios,oca-department,server/openerp/addons"
 ```
 
 Ahora hagamos que SalomonWebsite sepa de los módulos nuevos que hemos incluido.
@@ -179,7 +179,7 @@ Todavía, este archivo, no es usado por el módulo. Debemos decirle a SalomonWeb
 from . import todo_model
 ```
 
-Esto es todo. para que nuestros cambios tengan efecto el módulo debe ser actualizado. Encuentre la aplicación **To-Do** en **Módulos Locales** y haga clic en el botón **Actualizar**.
+Esto es todo, para que nuestros cambios tengan efecto el módulo debe ser actualizado. Encuentre la aplicación **To-Do** en **Módulos Locales** y haga clic en el botón **Actualizar**.
 
 Ahora podemos revisar el modelo recién creado en el menú **Técnico**. Vaya a **Estructura de la Base de Datos | Modelos** y busque el modelo `todo.task` en la lista. Luego haga clic en este para ver su definición:
 
