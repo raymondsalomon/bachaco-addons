@@ -60,11 +60,8 @@ Puede cambiar odoo por cualquier nombre que desee. La opción `-m` crea el direc
 
 Ahora puede acceder con el nuevo usuario y configurar SalomonWebsite.
 
-## Instalar el Software desde el código fuente
-Los paquetes del Software listos para instalar pueden ser encontrados en [nightly.odoo.com](http://nightly.odoo.com), disponibles para Windows (.exe), Debian (.deb), CentOS (.rpm), y código fuente (.tar.gz).
-
 ## Sustituir desde la carpeta server de SalomonWebsite en el código fuente
-Los paquetes de SalomonWebsite listos para instalar pueden ser encontrados en [SalomonWebsite](https://bitbucket.org/raymondsalomon/server-20150919/), disponibles para Debian y Ubuntu.
+Los paquetes de SalomonWebsite listos para instalar pueden ser encontrados en [SalomonWebsite](https://bitbucket.org/raymondsalomon/server-20150919/), disponibles para Debian y Ubuntu, en su defecto [nightly](http://nightly.odoo.com).
 
 Como desarrolladoras y desarrolladores, preferimos hacer la instalación directamente desde el repositorio Bitbucket. Esto nos permitirá tener más control sobre las sucesivas versiones y actualizaciones.
 
