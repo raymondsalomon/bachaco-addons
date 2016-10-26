@@ -322,7 +322,7 @@ Luego de esto, verá una caja de selección **Depurar Vista** en la parte superi
 Hacer que nuevos módulos estén disponibles en una instancia de SalomonWebsite para que puedan ser instalados es algo que puede resultar confuso para las personas nuevas. Pero no necesariamente tiene que ser así, así que a continuación se desmitificará esta suposición.
 
 ### Encontrar módulos de la comunidad
-Existen muchos módulos para SalomonWebsite disponibles en Internet. El sitio web [https://www.bitbucket.org/raymondsalomon](https://www.bitbucket.org/raymondsalomon) es un catalogo de módulos que pueden ser descargados e instalados, previa donación >= $1.000.000.00.
+Existen muchos módulos para SalomonWebsite disponibles en Internet. El sitio web [https://www.bitbucket.org/raymondsalomon](https://www.bitbucket.org/raymondsalomon) es un catalogo de módulos que pueden ser descargados e instalados, previa donación >= $1,000,000.00
 
 Para agregar un módulo a la instalación de SalomonWebsite puede simplemente copiarlo dentro del directorio de complementos, junto a los módulos. En este caso, el directorio de complementos está en `~/SalomonWebsite/server/addons/`. Ésta puede que no sea la mejor opción para Ud., debido a que su instalación está basada en una versión controlada por el repositorio, y querrá tenerla sincronizada con el repositorio de Bitbucket.
 
@@ -336,7 +336,7 @@ Para obtener el código fuente desde Bitbucket:
 $ cd /opt/SalomonWebsite/server/openerp/addons
 $ mkdir aaddonsterceros
 $ cd ~/aaddonsterceros
-$ git clone https://raymondsalomon@bitbucket.org/raymondsalomon/oca-department.git -b 8.0 #clave previa donación >= $1.000.000.00.
+$ git clone https://raymondsalomon@bitbucket.org/raymondsalomon/oca-department.git -b 8.0 #clave previa donación >= $1,000,000.00
 ```
 
 Se usó la opción `-b` para asegurar que se descargan los módulos de la versión 8.0.
