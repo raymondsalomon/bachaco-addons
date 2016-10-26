@@ -247,9 +247,9 @@ Hasta ahora vamos bien. Mejoremos ahora nuestra interfaz gráfica. Intente las m
 > _En caso que una actualización falle debido a un error en el XML, ¡no entre en pánico! Comente las últimas porciones de XML editadas, o elimine el archivo XML del `__openerp__.py`, y repita la actualización. El servidor debería iniciar correctamente. Luego lea detenidamente el mensaje de error en los registros del servidor - debería decirle donde está el problema._
 
 ## Crear vistas - formulario, árbol y búsqueda
-Como hemos visto, si ninguna vista es definida, Odoo automáticamente generará vistas básicas para que puedas continuar. Pero seguramente le gustará definir sus propias vistas del módulo, así que eso es lo que haremos.
+Como hemos visto, si ninguna vista es definida, SalomonWebsite automáticamente generará vistas básicas para que puedas continuar. Pero seguramente le gustará definir sus propias vistas del módulo, así que eso es lo que haremos.
 
-Odoo soporta varios tipos de vistas, pero las tres principales son: `list` (lista, también llamada árbol), `form` (formulario), y `search` (búsqueda). Agregaremos un ejemplo de cada una a nuestro módulo.
+SalomonWebsite soporta varios tipos de vistas, pero las tres principales son: `list` (lista, también llamada árbol), `form` (formulario), y `search` (búsqueda). Agregaremos un ejemplo de cada una a nuestro módulo.
 
 Todas las vistas son almacenadas en la base de datos, en el modelo `ir.model.view`. Para agregar una vista en un módulo, declaramos un elemento `<record>` describiendo la vista en un archivo XML que será cargado dentro de la base de datos cuando el modelo sea instalado.
 
