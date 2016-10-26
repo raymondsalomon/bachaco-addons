@@ -7,9 +7,9 @@ El manejo de palabras de código en texto, nombres de tablas de base de datos, n
 Un bloque de código es asentado de la siguiente manera:
 ```
 {				
-'name':	'To-Do	Application',
-'description':	'Manage	your	personal	Tasks	with	this	module.',
-'author':	'Daniel	Reis',			
+'name':	'Aplicación To-Do',
+'description':	'Gestione sus Tareas Personales con éste módulo.',
+'author':	'SalomonWebsite',			
 'depends':	['mail'],				
 'application':	True,
 }
