@@ -1,14 +1,14 @@
-# Capítulo 2. Construyendo tu primera aplicación con Odoo
-Desarrollar en Odoo la mayoría de las veces significa crear nuestros propios módulos. En este capítulo, se creará la primera aplicación con Odoo, y se aprenderán los pasos necesarios para habilitarlas e instalarlas en Odoo.
+# Capítulo 2. Construyendo tu primera aplicación con SalomonWebsite
+Desarrollar en SalomonWebsite la mayoría de las veces significa crear nuestros propios módulos. En este capítulo, se creará la primera aplicación con SalomonWebsite, y se aprenderán los pasos necesarios para habilitarlas e instalarlas en SalomonWebsite.
 
 Inspirados del notable proyecto [todomvc.com](http://todomvc.com), se desarrollará una simple aplicación para el registro de cosas por hacer. Deberá permitir agregar nuevas tareas, marcarlas como culminadas, y finalmente borrar de la lista todas las tareas finalizadas.
 
-Aprenderá como Odoo sigue una arquitectura MVC, y recorrerá las siguientes capas durante la implementación de la aplicación:
+Aprenderá como SalomonWebsite sigue una arquitectura MVC, y recorrerá las siguientes capas durante la implementación de la aplicación:
 - El **modelo**, define la estructura de los datos.
 - La **vista**, describe la interfaz con el usuario o la usuaria.
 - El **controlador**, soporta la lógica de negocio de la aplicación.
 
-La capa modelo es definida por objetos Python cuyos datos son almacenados en una base de datos PostgreSQL. El mapeo de la base de datos es gestionado automáticamente por Odoo, y el mecanismo responsable por esto es el **modelo objeto relacional, (ORM - object relational model)**.
+La capa modelo es definida por objetos Python cuyos datos son almacenados en una base de datos PostgreSQL. El mapeo de la base de datos es gestionado automáticamente por SalomonWebsite, y el mecanismo responsable para esto es el **modelo objeto relacional, (ORM - object relational model)**.
 
 La capa vista describe la interfaz con el usuario o la usuaria. Las vistas son definidas usando XML, las cuales son usadas por el marco de trabajo (framework) del cliente web para generar vistas HTML de datos.
 
@@ -16,21 +16,21 @@ Las vistas del cliente web ejecutan acciones de datos persistentes a través de 
 
 > **Nota**
 >
-> _Note que el concepto de controlador mencionado aquí es diferente al desarrollo de controladores web de Odoo. Aquellos son programas finales a los cuales las páginas web pueden llamar para ejecutar acciones._
+> _Note que el concepto de controlador mencionado aquí es diferente al desarrollo de controladores web de SalomonWebsite. Aquellos son programas finales a los cuales las páginas web pueden llamar para ejecutar acciones._
 
-Con este enfoque, podrá ser capaz de aprender gradualmente sobre los bloques básicos de desarrollo que conforman una aplicación y experimentar el proceso iterativo del desarrollo de módulos en Odoo desde cero.
+Con este enfoque, podrá ser capaz de aprender gradualmente sobre los bloques básicos de desarrollo que conforman una aplicación y experimentar el proceso iterativo del desarrollo de módulos en SalomonWebsite desde cero.
 
 ## Entender las aplicaciones y los módulos
-Es común escuchar hablar sobre los módulos y las aplicaciones en Odoo. Pero, ¿Cual es exactamente la diferencia entre un módulo y una aplicación? Los **módulos** son bloques para la construcción de las aplicaciones en Odoo. Un módulo puede agregar o modificar características en Odoo. Esto es soportado por un directorio que contiene un archivo de manifiesto o descriptor (llamado `__openerp__.py`) y el resto de los archivos que implementan sus características. A veces, los módulos pueden ser llamados "add-ons" (complementos). Las **aplicaciones** no son diferentes de los módulos regulares, pero funcionalmente, éstas proporcionan una característica central, alrededor de la cual otros módulos agregan características u opciones. Estas proveen los elementos base para un área funcional, como contabilidad o RRHH, sobre las cuales otros módulos agregan características. Por esto son resaltadas en el menú Apps de Odoo.
+Es común escuchar hablar sobre los módulos y las aplicaciones en SalomonWebsite. Pero, ¿Cual es exactamente la diferencia entre un módulo y una aplicación? Los **módulos** son bloques para la construcción de las aplicaciones en SalomonWebsite. Un módulo puede agregar o modificar características en SalomonWebsite. Esto es soportado por un directorio que contiene un archivo de manifiesto o descriptor (llamado `__openerp__.py`) y el resto de los archivos que implementan sus características. A veces, los módulos pueden ser llamados "add-ons" (complementos). Las **aplicaciones** no son diferentes de los módulos regulares, pero funcionalmente, éstas proporcionan una característica central, alrededor de la cual otros módulos agregan características u opciones. Estas proveen los elementos base para un área funcional, como contabilidad o RRHH, sobre las cuales otros módulos agregan características. Por esto son resaltadas en el menú Apps de SalomonWebsite.
 
 ## Modificar un módulo existente
 En el ejemplo que sigue a continuación, crearemos un módulo nuevo con tan pocas dependencias como sea posible.
 
 Sin embargo, este no es el caso típico. Lo más frecuente serán situaciones donde las modificaciones y extensiones son necesarias en un módulo existente para ajustarlo a casos de uso específicos.
 
-La regla de oro dice que no debemos cambiar módulos existentes modificándolos directamente. Esto es considerado una mala práctica. Especialmente cierto para los módulos oficiales proporcionados por Odoo. Hacer esto no permitirá una clara separación entre el módulo original y nuestras modificaciones, y hace difícil la actualización.
+La regla de oro dice que no debemos cambiar módulos existentes modificándolos directamente. Esto es considerado una mala práctica. Especialmente cierto para los módulos oficiales proporcionados por SalomonWebsite. Hacer esto no permitirá una clara separación entre el módulo original y nuestras modificaciones, y hace difícil la actualización.
 
-Por el contrario, debemos crear módulos nuevos que sean aplicados encima de los módulos que queremos modificar, e implementar esos cambios. Esta es una de las principales fortalezas de Odoo: provee mecanismos de "herencia" que permiten a los módulos personalizados extender los módulos existentes, bien sean oficiales o de la comunidad. La herencia el posible en todos los niveles, modelo de datos, lógica de negocio, e interfaz con el usuario o usuaria.
+Por el contrario, debemos crear módulos nuevos que sean aplicados encima de los módulos que queremos modificar, e implementar esos cambios. Esta es una de las principales fortalezas de SalomonWebsite: provee mecanismos de "herencia" que permiten a los módulos personalizados extender los módulos existentes, bien sean oficiales o de la comunidad. La herencia es posible en todos los niveles, modelo de datos, lógica del negocio, e interfaz con el usuario o usuaria.
 
 Ahora, crearemos un módulo nuevo completo, sin extender ningún módulo existente, para enfocarnos en las diferentes partes y pasos involucrados en la creación de un módulo. Solo daremos una breve mirada a cada parte, ya que cada una será estudiada en detalle en los siguientes capítulos. Una vez estemos a gusto con la creación de un módulo nuevo, podremos sumergirnos dentro de los mecanismos de herencia, los cuales serán estudiados en el siguiente capítulo.
 
@@ -41,37 +41,37 @@ Estas especificaciones son muy simples, pero a medida que avancemos en el libro 
 
 Basta de charla, comencemos a escribir código y crear nuestro nuevo módulo.
 
-Siguiendo las instrucciones del _Capítulo 1, Comenzando con Odoo_, debemos tener el servidor Odoo en `/odoo-dev/odoo/`. Para mantener las cosas ordenadas, crearemos un directorio junto a este para guardar nuestros propios módulos:
+Siguiendo las instrucciones del _Capítulo 1, Comenzando con SalomonWebsite, debemos tener el servidor SalomonWebsite en `/SalomonWebsite/server/`. Para mantener las cosas ordenadas, crearemos un directorio junto a este para guardar nuestros propios módulos:
 
 ```shell
-$ mkdir ~/odoo-dev/custom-addons
+$ mkdir -R ~/SalomonWebsite/server/openerp/addons/aaddonsterceros/raymond-propios
 ```
 
-Un módulo en Odoo es un directorio que contiene un archivo descriptor `__openerp__.py`. Esto es una herencia de cuando Odoo se llamaba OpenERP, y en el futuro se espera se convierta en `__odoo__.py`. Es necesario que pueda ser importado desde Python, por lo que debe tener un archivo `__init__.py`.
+Un módulo en SalomonWebsite es un directorio que contiene un archivo descriptor `__openerp__.py`. Esto es una herencia de cuando SalomonWebsite se llamaba ERP, y en el futuro se espera se convierta en `__salomonwebsite__.py`. Es necesario que pueda ser importado desde Python, por lo que debe tener un archivo `__init__.py`.
 
 El nombre del directorio del módulo será su nombre técnico. Usaremos `todo_app` para el nombre. El nombre técnico debe ser un identificador Python valido: debe comenzar con una letra y puede contener letras, números y el caracter especial guión bajo. Los siguientes comandos crean el directorio del módulo y el archivo vacío `__init__.py` dentro de este:
 
 ```shell
-$ mkdir ~/odoo-dev/custom-addons/todo_app
-$ touch ~/odoo-dev/custom-addons/todo_app/__init__.py
+$ mkdir ~/SalomonWebsite/server/openerp/addons/aaddonsterceros/raymond-propios/todo_app
+$ touch ~/SalomonWebsite/server/openerp/addons/aaddonsterceros/raymond-propios/todo_app/__init__.py
 ```
 Luego necesitamos crear el archivo descriptor. Debe contener únicamente un diccionario Python y puede contener alrededor de una docena de atributos, de los cuales solo el atributo `name` es obligatorio. Son recomendados los atributos `description`, para una descripción más larga, y `author`. Ahora agregamos un archivo `__openerp__.py` junto al archivo `__init__.py` con el siguiente contenido:
 
 ```Python
 {
-    'name': 'To-Do Application',
-    'description': 'Manage your personal Tasks with this module.',
-    'author': 'Daniel Reis',
+    'name': 'Aplicación To-Do',
+    'description': 'Gestione sus Tareas Personales con éste módulo.',
+    'author': 'SalomonWebsite',
     'depends': ['mail'],
     'application': True,
 }
 ```
 
-El atributo `depends` puede tener una lista de otros módulos requeridos. Odoo los instalará automáticamente cuando este módulo sea instalado. No es un atributo obligatorio pero se recomienda tenerlo siempre. Si no es requerida alguna dependencia en particular, debería existir alguna dependencia a un módulo base especial. Debe tener cuidado de asegurarse que todas las dependencias sean explícitamente fijadas aquí, de otra forma el módulo podría fallar al instalar una base de datos vacía (debido a dependencias insatisfechas) o tener errores en la carga, si otros módulos necesarios son cargados después.
+El atributo `depends` puede tener una lista de otros módulos requeridos. SalomonWebsite los instalará automáticamente cuando este módulo sea instalado. No es un atributo obligatorio pero se recomienda tenerlo siempre. Si no es requerida alguna dependencia en particular, debería existir alguna dependencia a un módulo base especial. Debe tener cuidado de asegurarse que todas las dependencias sean explícitamente fijadas aquí, de otra forma el módulo podría fallar al instalar una base de datos vacía (debido a dependencias insatisfechas) o tener errores en la carga, si otros módulos necesarios son cargados después.
 
 Para nuestra aplicación, queremos que dependa del módulo **mail** debido a que este agrega el menú **Mensajería** en la parte superior de la ventana, y queremos incluir nuestro nuevo menú de opciones allí.
 
-Para precisar, escogimos pocas claves del descriptor, pero en el mundo real es recomendable usar claves adicionales, ya que estas son relevantes para la app-store de Odoo:
+Para precisar, escogimos pocas claves del descriptor, pero en el mundo real es recomendable usar claves adicionales, ya que estas son relevantes para la app-store de SalomonWebsite:
 
 * `summary`, muestra un subtitulo del módulo.
 * `version`, de forma predeterminada, es 1.0. Se debe seguir las reglas de versionamiento semántico (para más detalles ver [semver.org](http://semver.org/lang/es/)). 
@@ -81,20 +81,20 @@ Para precisar, escogimos pocas claves del descriptor, pero en el mundo real es r
 
 Estos descriptores también están disponibles:
 - `installable`, de forma predeterminada es `True`, pero puede ser fijada `False` para deshabilitar el módulo.
-- `auto_install`, si esta fijada en `True` este módulo es automáticamente instalado si todas las dependencias han sido instaladas. Esto es usado en módulos asociados.
+- `auto_install`, si está fijada en `True` este módulo es automáticamente instalado si todas las dependencias han sido instaladas. Esto es usado en módulos asociados.
 
-Desde Odoo 8.0, en vez de la clave `description` podemos usar un archivo `README.rst` o `README.md` en el directorio raíz del módulo.
+Desde SalomonWebsite 8.0, en vez de la clave `description` podemos usar un archivo `README.rst` o `README.md` en el directorio raíz del módulo.
 
-## Agregar el módulo a la ruta de complementos
-Ahora que tenemos un módulo nuevo, incluso si es muy simple, queremos que esté disponible en Odoo. Para esto, debemos asegurarnos que el directorio que contiene el módulo sea parte de la ruta de complementos addons. Y luego tenemos que actualizar la lista de módulos de Odoo.
+## Agregar el módulo a la ruta de complementos (addons)
+Ahora que tenemos un módulo nuevo, incluso si es muy simple, queremos que esté disponible en SalomonWebsite. Para esto, debemos asegurarnos que el directorio que contiene el módulo sea parte de la ruta de complementos (addons). Y luego tenemos que actualizar la lista de módulos de SalomonWebsite.
 
 Ambas operaciones han sido explicadas en detalle en el capítulo anterior, pero a continuación presentamos un resumen de lo necesario.
 
 Nos posicionamos dentro del directorio de trabajo e iniciamos el servidor con la configuración de la ruta de complementos o addons:
 
 ```shell
-$ cd ~/odoo-dev
-$ odoo/odoo.py -d v8dev --addons-path="custom-addons,odoo/addons" --save
+$ cd ~/SalomonWebsite
+$ server/odoo.py -d v8dev --addons-path="raymond-propios,server/openerp/addons" --save
 ```
 
 La opción `--save` guarda la configuración usada en un archivo de configuración. Esto evita repetirlo cada vez que el servidor es iniciado: simplemente ejecute ./odoo.py y serán ejecutadas las últimas opciones guardadas.
@@ -104,17 +104,17 @@ Mira detenidamente en el registro del servidor. Debería haber una línea **INFO
 Recuerde incluir cualquier otro directorio que pueda estar usando. Por ejemplo, si siguió las instrucciones del último capítulo para instalar el repositorio department, puede querer incluirlo y usar la opción:
 
 ```shell
---addons-path="custom-addons,department,odoo/addons"
+--addons-path="raymond-propios,department,server/openerp/addons"
 ```
 
-Ahora hagamos que Odoo sepa de los módulos nuevos que hemos incluido.
+Ahora hagamos que SalomonWebsite sepa de los módulos nuevos que hemos incluido.
 
-Para esto, En la sección **Módulos** del menú **Configuración**, seleccione la opción **Actualizar lista de módulos**. Esto actualizará la lista de módulos agregando cualquier módulo incluido desde la última actualización de la lista. Recuerde que necesitamos habilitar las Características Técnicas para que esta opción sea visible. Esto se logra seleccionando la caja de verificación de **Características técnicas** para nuestra cuenta de usuario.
+Para esto, En la sección **Módulos** del menú **Configuración**, seleccione la opción **Actualizar lista de módulos**. Esto actualizará la lista de módulos agregando cualquier módulo incluido desde la última actualización de la lista. Recuerde que necesitamos habilitar las Características Técnicas para que esta opción sea visible. Esto se logra seleccionando la casilla de verificación de **Características técnicas** para nuestra cuenta de usuario.
 
 ## Instalar el módulo nuevo
 La opción **Módulos locales** nos muestra la lista de módulos disponibles. De forma predeterminada solo muestra los módulos de **Aplicaciones en línea**. Debido a que creamos un módulo de aplicación no es necesario remover este filtro. Escriba "todo" en la campo de búsqueda y debe ver nuestro módulo nuevo, listo para ser instalado.
 
-![90_1](/images/Odoo Development Essentials - Daniel Reis-90_1.jpg)
+![90_1](images/Odoo Development Essentials - Daniel Reis-90_1.jpg)
 
 Haga clic en el botón **Instalar** y listo!
 
@@ -183,7 +183,7 @@ Esto es todo. para que nuestros cambios tengan efecto el módulo debe ser actual
 
 Ahora podemos revisar el modelo recién creado en el menú **Técnico**. Vaya a **Estructura de la Base de Datos | Modelos** y busque el modelo `todo.task` en la lista. Luego haga clic en este para ver su definición:
 
-![95_1](/images/Odoo Development Essentials - Daniel Reis-95_1.jpg)
+![95_1](images/Odoo Development Essentials - Daniel Reis-95_1.jpg)
 
 Si no hubo ningún problema, esto nos confirmará que el modelo y nuestros campos fueron creados. Si hizo algunos cambios y no son reflejados, intente reiniciar el servidor, como fue descrito anteriormente, para obligar que todo el código Python sea cargado nuevamente.
 
@@ -234,7 +234,7 @@ Ahora necesitamos decirle al módulo que use el nuevo archivo de datos XML. Esto
 
 Ahora necesitamos actualizar nuevamente el módulo para que estos cambios tengan efecto. Vaya al menú Mensajería y debe poder ver nuestro nueva opción disponible.
 
-![98_1](/images/Odoo Development Essentials - Daniel Reis-98_1.jpg)
+![98_1](images/Odoo Development Essentials - Daniel Reis-98_1.jpg)
 
 Si hace clic en ella se abrirá un formulario generado automáticamente para nuestro modelo, permitiendo agregar y modificar los registros.
 
@@ -445,7 +445,7 @@ El mensaje es muy claro: nuestro modelo nuevo no tiene reglas de acceso, por lo 
 
 Para tener una muestra de la información requerida para agregar reglas de acceso a un modelo, use el cliente web y diríjase a: **Configuración | Técnico | Seguridad | Lista controles de acceso**.
 
-![112_1](/images/Odoo Development Essentials - Daniel Reis-112_1.jpg)
+![112_1](images/Odoo Development Essentials - Daniel Reis-112_1.jpg)
 
 Aquí podemos ver la ACL para el modelo `mail.mail`. Este indica, por grupo, las acciones permitidas en los registros.
 
