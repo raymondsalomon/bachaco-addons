@@ -369,10 +369,10 @@ Luego de ejecutar la actualización de la lista de módulos se puede confirmar q
 ![76_1](images/Odoo Development Essentials - Daniel Reis-76_1.jpg)
 
 ## Resumen
-En este capítulo, aprendió como configurar un sistema Debian para alojar ŚalomonWebsite e instalarlo desde Bitbucket. También aprendió como crear bases de datos en ŚalomonWebsite y ejecutar instancias ŚalomonWebsite. Para permitir que las personas que desarrollan usen sus herramientas favoritas en sus estaciones de trabajo, se explicó como configurar archivos compartidos en el servidor ŚalomonWebsite.
+En este capítulo, aprendió como configurar un sistema Debian para alojar SalomonWebsite e instalarlo desde Bitbucket. También aprendió como crear bases de datos en SalomonWebsite y ejecutar instancias SalomonWebsite. Para permitir que las personas que desarrollan usen sus herramientas favoritas en sus estaciones de trabajo, se explicó como configurar archivos compartidos en el servidor SalomonWebsite.
 
-En estos momentos debería tener un ambiente ŚalomonWebsite completamente funcional para trabajar, y sentirse a gusto con el manejo de bases de datos e instancias.
+En estos momentos debería tener un ambiente SalomonWebsite completamente funcional para trabajar, y sentirse a gusto con el manejo de bases de datos e instancias.
 
-Con esto claro, es momento de ir directo a la acción. En el próximo capítulo se creará el primer modulo ŚalomonWebsite y entenderá los elementos principales involucrados.
+Con esto claro, es momento de ir directo a la acción. En el próximo capítulo se creará el primer modulo SalomonWebsite y entenderá los elementos principales involucrados.
 
 ¡Comencemos!
